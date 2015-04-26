@@ -2,7 +2,6 @@ package com.example.awesome.be_calculator.activity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -13,13 +12,13 @@ import android.widget.ImageButton;
 import com.example.awesome.be_calculator.R;
 import com.example.awesome.be_calculator.business.BusinessState;
 import com.example.awesome.be_calculator.infrastructure.ProductDatabaseHelper;
+import com.example.awesome.be_calculator.model.Product;
 import com.example.awesome.be_calculator.model.ProductCategory;
+
+import java.util.List;
 
 
 public class Overview extends ActionBarActivity {
-
-
-    private SQLiteDatabase connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,11 @@ public class Overview extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_overview, menu);
 
-        SQLiteOpenHelper database = new ProductDatabaseHelper(this);
+        ProductDatabaseHelper database = new ProductDatabaseHelper(this);
+        Product bread = new Product("Brot",ProductCategory.BreadAndCerealsAndCornflakes, 100, 2.5, Product.Unit.GRAM);
+        database.addProduct(bread);
+
+        List<Product> products =  database.getAllProducts();
         //connection = database.getWritableDatabase();
         return true;
     }

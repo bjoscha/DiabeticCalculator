@@ -21,6 +21,26 @@ public class Product {
         return amount / amountPerUnit * bePerUnit;
     }
 
+    public int getAmount(){
+        return (int)amountPerUnit;
+    }
+
+    public double getBE()
+    {
+        return bePerUnit;
+    }
+
+    public String getUnit()
+    {
+        if (ofUnit.equals(Unit.GRAM))
+            return "g";
+        if (ofUnit.equals(Unit.MILLILITRE))
+            return "ml";
+
+        return "unbekannte Einheit";
+    }
+
+
     public Product(String name, ProductCategory category, double amountPerUnit, double bePerUnit, Unit unit) {
         this.Name = name;
         this.Category = category;
@@ -29,7 +49,7 @@ public class Product {
         this.ofUnit = unit;
     }
 
-    public Unit getUnit()
+    public Unit getUnitType()
     {
         return this.ofUnit;
     }
